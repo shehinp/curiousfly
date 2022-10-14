@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load tailwind_filters %}
+
+{% block content %}
+
+<div class="max-w-lg mx-auto">
+    <a class="hover:text-blue-500" href="{% url 'accounts:account-list' %}">Go back to leads</a>
+    <div class="py-5 border-t border-gray-200">
+        <h1 class="text-3xl text-gray-800">Create a new account</h1><br>
+    </div>
+</div>
+<div style="margin-left: 100px;" class="max-w-lg">
+    <h1 class="text-xl text-gray-800">Account Information</h1>
+    <form method="post" class="mt-5">
+        {% csrf_token %}
+        {{ account|crispy }}
+        <br>
+        <h1 class="text-xl text-gray-800">Address Information</h1>
+        <br>
+        {{ address|crispy }}
+        <br>
+        <h1 class="text-xl text-gray-800">Follow up Information</h1>
+        <br>
+        {{ followup|crispy }}
+    </div>
+
+    <!-- <div style="margin-left: 300px;" class="max-w-lg">
+        <form method="post" class="mt-5" href="{% url 'leads:lead-create' %}">
+            {% csrf_token %}
+            {{ address }}
+        </div> -->
+
+    <div class="max-w-lg mx-auto">
+        <button type='submit' class="w-full text-white bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-md">
+            Submit
+        </button>
+    </form>
+</div>
+
+
+{% endblock content %}
